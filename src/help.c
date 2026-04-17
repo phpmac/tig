@@ -19,15 +19,38 @@
 
 extern const struct menu_item toggle_menu_items[];
 
-static const char collapse_expand_names[2][13] = {
-	"Collapse all",
-	"Expand all"
+/* keymap 名称中文映射 */
+static const char *
+keymap_name_cn(const char *name)
+{
+	if (!strcmp(name, "main"))   return "主日志";
+	if (!strcmp(name, "diff"))   return "差异";
+	if (!strcmp(name, "log"))    return "日志";
+	if (!strcmp(name, "reflog")) return "引用日志";
+	if (!strcmp(name, "tree"))   return "目录树";
+	if (!strcmp(name, "blob"))   return "文件内容";
+	if (!strcmp(name, "blame"))  return "追溯";
+	if (!strcmp(name, "refs"))   return "引用";
+	if (!strcmp(name, "status")) return "状态";
+	if (!strcmp(name, "stage"))  return "暂存区";
+	if (!strcmp(name, "stash"))  return "贮藏";
+	if (!strcmp(name, "grep"))   return "搜索";
+	if (!strcmp(name, "pager"))  return "分页";
+	if (!strcmp(name, "help"))   return "帮助";
+	if (!strcmp(name, "generic")) return "通用";
+	if (!strcmp(name, "search"))  return "搜索模式";
+	return name;
+}
+
+static const char collapse_expand_names[2][17] = {
+	"全部折叠",
+	"全部展开"
 };
 static struct keymap collapse_expand_keymap = {
 	collapse_expand_names[0], NULL, 0, false
 };
 static struct keymap toggle_menu_keymap = {
-	"toggle", NULL, 0, false
+	"切换", NULL, 0, false
 };
 
 /*
@@ -60,8 +83,8 @@ help_draw(struct view *view, struct line *line, unsigned int lineno)
 
 	if (line->type == LINE_SECTION) {
 		draw_formatted(view, line->type, "[%c] %s %s",
-				keymap->hidden ? '+' : '-', keymap->name,
-				keymap == &collapse_expand_keymap ? "sections" : "bindings");
+				keymap->hidden ? '+' : '-', keymap_name_cn(keymap->name),
+				keymap == &collapse_expand_keymap ? "分组" : "键绑定");
 
 	} else if (line->type == LINE_HELP_GROUP || !keymap) {
 		draw_text(view, line->type, help->data.text);
@@ -78,7 +101,7 @@ help_draw(struct view *view, struct line *line, unsigned int lineno)
 		if (draw_field(view, LINE_HELP_ACTION, item->data, state->name_width, ALIGN_LEFT, false))
 			return true;
 
-		draw_formatted(view, LINE_DEFAULT, "Toggle %s", item->text);
+		draw_formatted(view, LINE_DEFAULT, "切换 %s", item->text);
 
 	} else if (help->request > REQ_RUN_REQUESTS) {
 		struct run_request *req = get_run_request(help->request);
@@ -118,7 +141,7 @@ help_grep(struct view *view, struct line *line)
 	const struct keymap *keymap = help->item.keymap;
 
 	if (line->type == LINE_SECTION) {
-		const char *text[] = { keymap->name, NULL };
+		const char *text[] = { keymap->name, keymap_name_cn(keymap->name), NULL };
 
 		return grep_text(view, text);
 
@@ -129,7 +152,7 @@ help_grep(struct view *view, struct line *line)
 
 	} else if (line->type == LINE_HELP_TOGGLE) {
 		char key[2];
-		const char *text[] = { key, help->item.menu->data, "Toggle", help->item.menu->text, NULL };
+		const char *text[] = { key, help->item.menu->data, "切换", help->item.menu->text, NULL };
 
 		if (!string_nformat(key, sizeof(key), NULL, "%c", help->item.menu->hotkey))
 			return false;
@@ -239,7 +262,7 @@ help_open(struct view *view, enum open_flags flags)
 
 	if (!add_help_line(view, &help, NULL, LINE_HEADER))
 		return ERROR_OUT_OF_MEMORY;
-	help->data.text = "Quick reference for tig keybindings:";
+	help->data.text = "tig 快捷键快速参考:";
 
 	if (!add_help_line(view, &help, &collapse_expand_keymap, LINE_SECTION))
 		return ERROR_OUT_OF_MEMORY;
@@ -258,7 +281,7 @@ help_open(struct view *view, enum open_flags flags)
 
 		if (!add_help_line(view, &help, NULL, LINE_HELP_GROUP))
 			return ERROR_OUT_OF_MEMORY;
-		help->data.text = "Toggle keys (enter: o <key>):";
+		help->data.text = "切换键 (输入: o <key>):";
 
 		for (i = 0; toggle_menu_items[i].data; i++) {
 			state->name_width = MAX(state->name_width, strlen(toggle_menu_items[i].data));

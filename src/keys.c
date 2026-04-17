@@ -657,9 +657,9 @@ static bool
 foreach_key_run_request(struct key_visitor_state *state, bool internal, bool toggles)
 {
 	struct keymap *keymap = state->keymap;
-	const char *group = !internal ?	"External commands:" :
-			    toggles ?	"Option toggling:" :
-					"Internal commands:";
+	const char *group = !internal ?	"外部命令:" :
+			    toggles ?	"选项切换:" :
+					"内部命令:";
 	enum request request = REQ_RUN_REQUESTS + 1;
 
 	for (; true; request++) {

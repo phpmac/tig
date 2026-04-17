@@ -1,4 +1,4 @@
-Tig: text-mode interface for Git
+Tig:Git 的文本模式界面
 ================================
 :docext: adoc
 
@@ -6,43 +6,42 @@ image:https://github.com/jonas/tig/workflows/Linux/badge.svg[Linux CI,link=https
 image:https://github.com/jonas/tig/workflows/macOS/badge.svg[macOS CI,link=https://github.com/jonas/tig/actions?query=workflow%3AmacOS]
 image:https://ci.appveyor.com/api/projects/status/jxt1uf52o7r0a8r7/branch/master?svg=true[AppVeyor Build,link=https://ci.appveyor.com/project/fonseca/tig]
 
-What is Tig?
+Tig 是什么？
 ------------
-Tig is an ncurses-based text-mode interface for git. It functions mainly
-as a Git repository browser, but can also assist in staging changes for
-commit at chunk level and act as a pager for output from various Git
-commands.
+Tig 是一个基于 ncurses 的 Git 文本模式界面.它主要用作 Git 仓库
+浏览器,同时也能在提交前按代码块(chunk)粒度暂存改动,并可作为
+各种 Git 命令输出的分页器(pager)使用.
 
-Resources
----------
+相关资源
+--------
 
- - Homepage:	https://github.com/jonas/tig[]
- - Manual:	https://www.mankier.com/7/tigmanual[]
- - Tarballs:	https://github.com/jonas/tig/releases[]
- - Q&A:		https://stackoverflow.com/questions/tagged/tig[]
+ - 主页:		https://github.com/jonas/tig[]
+ - 手册:		https://www.mankier.com/7/tigmanual[]
+ - 发布包:	https://github.com/jonas/tig/releases[]
+ - 问答:		https://stackoverflow.com/questions/tagged/tig[]
 
-Bugs and Feature Requests
--------------------------
-Bugs and feature requests can be reported using the
-https://github.com/jonas/tig/issues[issue tracker] or by mail to the
-https://lore.kernel.org/git/[Git mailing list]. Ensure that the word
-"tig" is in the subject. For other Tig related questions please use
-Stack Overflow: https://stackoverflow.com/questions/tagged/tig[].
+问题反馈与功能建议
+------------------
+Bug 和功能建议可以通过
+https://github.com/jonas/tig/issues[issue 跟踪器] 提交,
+也可以发邮件到 https://lore.kernel.org/git/[Git 邮件列表],
+注意邮件主题中需要包含 "tig" 一词.其他与 Tig 相关的问题
+请使用 Stack Overflow:https://stackoverflow.com/questions/tagged/tig[].
 
-If you are sending a bug report, please include the following information:
+如果是提交 Bug 报告,请附上以下信息:
 
-- What Tig and ncurses versions are you using?
+- 你使用的 Tig 和 ncurses 版本是多少？
   (`tig -v`)
-- What system do you have?
-  (`uname -a`, `lsb_release -a`)
-- What Git version are you using?
+- 你的系统是什么？
+  (`uname -a`,`lsb_release -a`)
+- 你使用的 Git 版本是多少？
   (`git -v`)
 
-Installation and News
----------------------
+安装与更新日志
+--------------
 
-Information on how to build and install Tig are found in
-link:INSTALL.{docext}[the installation instructions].
+关于如何构建和安装 Tig,请参阅
+link:INSTALL.{docext}[安装说明].
 
-News about releases and latest features and bug fixes are found in
-link:NEWS.{docext}[the release notes].
+关于版本发布,最新特性和 Bug 修复的信息,请参阅
+link:NEWS.{docext}[发布说明].

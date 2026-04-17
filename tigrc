@@ -1,71 +1,70 @@
-# Tig default configuration
+# Tig 默认配置
 #
-# Please see 'man tigrc' for a complete reference.
+# 完整参考请查看 'man tigrc'
 
-# Settings
+# 设置
 # --------
-# Most of these settings can be toggleable, either via the toggle-*
-# actions or via the option menu (bound to `o` by default).
+# 大部分设置可以通过 toggle-* 操作或选项菜单 (默认绑定到 `o`) 来切换
 
-# View settings
+# 视图设置
 #
-# Supported column types and their options:
+# 支持的列类型及其选项:
 #
 #   author, committer
 #    - display (enum) [no|full|abbreviated|email|email-user]
-#					: Show author/committer information?
-#    - width (int)			: Fixed width when nonzero
-#    - maxwidth (int)			: Autosize limit
+#					: 显示作者/提交者信息?
+#    - width (int)			: 固定宽度, 非零时生效
+#    - maxwidth (int)			: 自动调整宽度上限
 #
 #   commit-title
-#    - display (bool)			: Show the commit title?
-#    - graph (enum) [no|v2|v1]		: Show the commit graph? (main view only)
-#    - refs (bool)			: Show branches, tags and remotes? (main view only)
-#    - overflow (boolint)		: Highlight overflows? Defaults to 50 when enabled.
+#    - display (bool)			: 显示提交标题?
+#    - graph (enum) [no|v2|v1]		: 显示提交图? (仅主视图)
+#    - refs (bool)			: 显示分支/标签/远程引用? (仅主视图)
+#    - overflow (boolint)		: 高亮溢出? 启用时默认为 50
 #
 #   date
 #    - display (enum) [no|default|relative|relative-compact|custom]
-#					: Show dates?
-#    - use-author (bool)		: Show author date instead of committer date?
-#    - local (bool)			: Show local dates?
-#    - format (string)			: Custom strftime(3) format
-#					  Note: %Z is formatted as %z
-#    - width (int)			: Fixed width when nonzero
+#					: 显示日期?
+#    - use-author (bool)		: 显示作者日期而非提交者日期?
+#    - local (bool)			: 显示本地日期?
+#    - format (string)			: 自定义 strftime(3) 格式
+#					  注意: %Z 被格式化为 %z
+#    - width (int)			: 固定宽度, 非零时生效
 #
 #   file-name
-#    - display (enum) [no|always|auto]	: Show file names?
-#    - width (int)			: Fixed width when nonzero
-#    - maxwidth (int)			: Autosize limit
+#    - display (enum) [no|always|auto]	: 显示文件名?
+#    - width (int)			: 固定宽度, 非零时生效
+#    - maxwidth (int)			: 自动调整宽度上限
 #
 #   file-size
 #    - display (enum) [no|default|units]
-#					: Show file sizes?
-#    - width (int)			: Fixed width when nonzero
+#					: 显示文件大小?
+#    - width (int)			: 固定宽度, 非零时生效
 #
 #   id
-#    - display (bool)			: Show commit/tree ID?
-#    - width (int)			: Fixed width when nonzero
+#    - display (bool)			: 显示提交/树 ID?
+#    - width (int)			: 固定宽度, 非零时生效
 #
 #   line-number
-#    - display (bool)			: Show line numbers?
-#    - interval (int)			: Interval between line numbers; defaults to 5
-#    - width (int)			: Fixed width when nonzero
+#    - display (bool)			: 显示行号?
+#    - interval (int)			: 行号间隔, 默认 5
+#    - width (int)			: 固定宽度, 非零时生效
 #
 #   mode
-#    - display (bool)			: Show file modes?
-#    - width (int)			: Fixed width when nonzero
+#    - display (bool)			: 显示文件权限?
+#    - width (int)			: 固定宽度, 非零时生效
 #
 #   ref
-#    - display (bool)			: Show ref names?
-#    - width (int)			: Fixed width when nonzero
-#    - maxwidth (int)			: Autosize limit
+#    - display (bool)			: 显示引用名?
+#    - width (int)			: 固定宽度, 非零时生效
+#    - maxwidth (int)			: 自动调整宽度上限
 #
 #   status
-#    - display (enum) [no|short|long]	: Show status label?
+#    - display (enum) [no|short|long]	: 显示状态标签?
 #
 #   text
-#    - display (bool)			: Show text?
-#    - commit-title-overflow (boolint)	: Highlight overflow in log and diff view?
+#    - display (bool)			: 显示文本?
+#    - commit-title-overflow (boolint)	: 在日志和差异视图中高亮溢出?
 #
 
 set blame-view	= id:yes,color file-name:auto author:full committer:no date:default,format="%Y-%m-%d" line-number:yes,interval=1 text
@@ -77,121 +76,120 @@ set stash-view	= line-number:no,interval=5 id:no date:default,format="%Y-%m-%d" 
 set status-view	= line-number:no,interval=5 status:short file-name
 set tree-view	= line-number:no,interval=5 mode author:full committer:no file-size date:default,format="%Y-%m-%d" id:no file-name
 
-# Pager based views
+# 分页器视图
 set pager-view	= line-number:no,interval=5 text
 set stage-view	= line-number:no,interval=5 text
 set log-view	= line-number:no,interval=5 text
 set blob-view	= line-number:no,interval=5 text
 set diff-view	= line-number:no,interval=5 text:yes,commit-title-overflow=no
 
-# UI display settings
-set show-changes		= yes		# Show changes commits in the main view?
-set show-untracked		= yes		# Show also untracked changes?
-set wrap-lines			= no		# Wrap long lines in pager views?
-set tab-size			= 8		# Number of spaces to use when expanding tabs
-set line-graphics		= default	# Enum: ascii, default, utf-8, auto
-set truncation-delimiter	= ~		# Character drawn for truncations, or "utf-8"
+# 界面显示设置
+set show-changes		= yes		# 在主视图中显示变更提交?
+set show-untracked		= yes		# 同时显示未跟踪的变更?
+set wrap-lines			= no		# 在分页器视图中折行长行?
+set tab-size			= 8		# 展开制表符时使用的空格数
+set line-graphics		= default	# 枚举: ascii, default, utf-8, auto
+set truncation-delimiter	= ~		# 截断时显示的字符, 或 "utf-8"
 
-# Format reference names based on type:
-#  - head		: The current HEAD.
-#  - tag		: An annotated tag.
-#  - local-tag		: A lightweight tag.
-#  - remote		: A remote.
-#  - tracked-remote	: The remote tracked by current HEAD.
-#  - replace		: A replaced reference.
-#  - branch		: A branch.
-#  - stash		: The stash.
-#  - note		: Notes.
-#  - prefetch		: Refs prefetched by `git maintenance`.
-#  - other		: Any other reference.
+# 按类型格式化引用名称:
+#  - head		: 当前 HEAD
+#  - tag		: 附注标签
+#  - local-tag		: 轻量标签
+#  - remote		: 远程
+#  - tracked-remote	: 当前 HEAD 跟踪的远程
+#  - replace		: 替换引用
+#  - branch		: 分支
+#  - stash		: 贮藏
+#  - note		: 备注
+#  - prefetch		: `git maintenance` 预取的引用
+#  - other		: 其他引用
 #
-# Expects a space-separated list of format strings.
-# If no format is specified for `local-tag`, the format for `tag` is used.
-# Similarly, if no format is specified for `tracked-remote`, the format for
-# `remote` is used, and if no format is specified for any other reference
-# type, the format for `branch` is used.
-# Prefix with `hide:` to not show that reference type, e.g. `hide:prefetch`.
+# 期望以空格分隔的格式字符串列表
+# 如果未为 `local-tag` 指定格式, 则使用 `tag` 的格式
+# 同理, 如果未为 `tracked-remote` 指定格式, 则使用 `remote` 的格式
+# 如果未为任何其他引用类型指定格式, 则使用 `branch` 的格式
+# 加 `hide:` 前缀可隐藏该引用类型, 例如 `hide:prefetch`
 set reference-format		= [branch] <tag> {remote} ~replace~
 
-# Settings controlling how content is read from Git
-set commit-order		= auto		# Enum: auto, default, topo, date, reverse (main)
-set status-show-untracked-dirs	= yes		# Show files in untracked directories? (status)
-set status-show-untracked-files	= yes		# Show untracked files?
-set ignore-space		= no		# Enum: no, all, some, at-eol (diff)
-set show-notes			= yes		# When non-bool passed as `--show-notes=...` (diff)
-#set diff-context		= 3		# Number of lines to show around diff changes (diff)
-#set word-diff			= yes		# Show a word diff? (diff)
-#set diff-options		= -C		# User-defined options for `tig show` (git-diff)
-#set diff-highlight		= yes		# String (or bool): Path to diff-highlight script,
-						#                   defaults to `diff-highlight`.
-set diff-indicator		= yes		# Show diff +/- signs?
-#set blame-options		= -C -C -C	# User-defined options for `tig blame` (git-blame)
-set log-options			= --cc --stat	# User-defined options for `tig log` (git-log)
-#set main-options		= -n 1000	# User-defined options for `tig` (git-log)
-set mailmap			= yes		# Use .mailmap to show canonical name and email address?
+# 控制 Git 内容读取的设置
+set commit-order		= auto		# 枚举: auto, default, topo, date, reverse (主视图)
+set status-show-untracked-dirs	= yes		# 显示未跟踪目录中的文件? (状态视图)
+set status-show-untracked-files	= yes		# 显示未跟踪文件?
+set ignore-space		= no		# 枚举: no, all, some, at-eol (差异视图)
+set show-notes			= yes		# 非布尔值时传递为 `--show-notes=...` (差异视图)
+#set diff-context		= 3		# diff 变更周围显示的行数 (差异视图)
+#set word-diff			= yes		# 显示逐词差异? (差异视图)
+#set diff-options		= -C		# `tig show` 的自定义选项 (git-diff)
+#set diff-highlight		= yes		# 字符串 (或布尔值): diff-highlight 脚本路径,
+						#                   默认为 `diff-highlight`
+set diff-indicator		= yes		# 显示 diff +/- 符号?
+#set blame-options		= -C -C -C	# `tig blame` 的自定义选项 (git-blame)
+set log-options			= --cc --stat	# `tig log` 的自定义选项 (git-log)
+#set main-options		= -n 1000	# `tig` 的自定义选项 (git-log)
+set mailmap			= yes		# 使用 .mailmap 显示规范名称和邮箱地址?
 
-# Misc
-set start-on-head		= no		# Start with cursor on HEAD commit?
-set refresh-mode		= auto		# Enum: manual, auto, after-command, periodic
-set refresh-interval		= 10		# Interval in seconds between refreshes
-set ignore-case			= no		# Enum: no, yes, smart-case
-						# Ignore case when searching?
-set wrap-search			= yes		# Wrap around to top/bottom of view when searching?
-set focus-child			= yes		# Move focus to child view when opened?
-set send-child-enter		= yes		# Propagate "enter" keypresses to child views?
-set horizontal-scroll		= 50%		# Number of columns to scroll as % of width
-set split-view-height		= 67%		# Height of the bottom view for horizontal splits
-set vertical-split		= auto		# Enum: horizontal, vertical, auto; Use auto to
-						# switch to horizontal split when width allows it
-set split-view-width		= 50%		# Width of right-most view for vertical splits
-set editor-line-number		= yes		# Automatically pass line number to editor? Used
-						# for opening file at specific line e.g. from a diff
-set history-size		= 500		# Size of persistent history, 0 to disable
-set mouse			= no		# Enable mouse support?
-set mouse-scroll		= 3		# Number of lines to scroll via the mouse
-set mouse-wheel-cursor		= no		# Prefer moving the cursor to scrolling the view?
-set pgrp			= no		# Make tig process-group leader?
-set pager-autoscroll		= no		# Scroll the pager view automatically while loading?
+# 杂项
+set start-on-head		= no		# 启动时光标定位到 HEAD 提交?
+set refresh-mode		= auto		# 枚举: manual, auto, after-command, periodic
+set refresh-interval		= 10		# 刷新间隔 (秒)
+set ignore-case			= no		# 枚举: no, yes, smart-case
+						# 搜索时忽略大小写?
+set wrap-search			= yes		# 搜索时在视图顶部/底部循环?
+set focus-child			= yes		# 打开子视图时将焦点移至子视图?
+set send-child-enter		= yes		# 将 "回车" 按键传递给子视图?
+set horizontal-scroll		= 50%		# 水平滚动列数为宽度的百分比
+set split-view-height		= 67%		# 水平分割时底部视图的高度占比
+set vertical-split		= auto		# 枚举: horizontal, vertical, auto; 使用 auto 时
+						# 在宽度允许时自动切换为水平分割
+set split-view-width		= 50%		# 垂直分割时最右侧视图的宽度占比
+set editor-line-number		= yes		# 自动传递行号给编辑器? 用于
+						# 在特定行打开文件, 例如从 diff 中
+set history-size		= 500		# 持久历史大小, 0 为禁用
+set mouse			= no		# 启用鼠标支持?
+set mouse-scroll		= 3		# 鼠标滚轮滚动行数
+set mouse-wheel-cursor		= no		# 优先移动光标而非滚动视图?
+set pgrp			= no		# 使 tig 成为进程组领导者?
+set pager-autoscroll		= no		# 加载时自动滚动分页器视图?
 
-# User-defined commands
+# 用户自定义命令
 # ---------------------
-# These commands allow to run shell commands directly from within Tig.
-# Unless otherwise specified, commands are run in the foreground with
-# their console output shown (as if '!' was specified). When multiple
-# command options are specified their behavior are combined, e.g. "?<git
-# commit" will prompt the user whether to execute the command and will
-# exit Tig after completion.
+# 这些命令允许在 Tig 内直接运行 shell 命令
+# 除非另有指定, 命令在前台运行并
+# 显示控制台输出 (如同指定了 '!'). 当指定多个
+# 命令选项时行为会组合, 例如 "?<git
+# commit" 会提示用户是否执行命令并
+# 在完成后退出 Tig
 #
-#   !	Run the command in the foreground with output shown.
-#   @	Run the command in the background with no output.
-#   ?	Prompt the user before executing the command.
-#   +	Run the command synchronously, and echo the first line of output to the status bar.
-#   <	Exit Tig after executing the command.
-#   >	Re-open Tig instantly in the last displayed view after executing the command.
+#   !	在前台运行命令并显示输出
+#   @	在后台运行命令, 无输出
+#   ?	执行命令前提示用户确认
+#   +	同步运行命令, 并将首行输出回显到状态栏
+#   <	执行命令后退出 Tig
+#   >	执行命令后立即在上次显示的视图中重新打开 Tig
 #
-# User-defined commands can optionally refer to Tig's internal state
-# using the following variable names, which are substituted before
-# commands are run (see 'man tigrc' for the full list):
+# 用户自定义命令可以引用 Tig 的内部状态
+# 使用以下变量名, 在命令运行前替换
+# (完整列表见 'man tigrc'):
 #
-#   %(head)		The current ref ID. Defaults to HEAD
-#   %(commit)		The current commit ID.
-#   %(blob)		The current blob ID.
-#   %(branch)		The current branch name.
-#   %(remote)		The current remote name.
-#   %(tag)		The current tag name.
-#   %(stash)		The current stash name.
-#   %(directory)	The current directory path in the tree view;
-#			empty for the root directory.
-#   %(file)		The currently selected file.
-#   %(ref)		The reference given to blame or HEAD if undefined.
-#   %(revargs)		The revision arguments passed on the command line.
-#   %(fileargs)		The file arguments passed on the command line.
-#   %(cmdlineargs)	All other options passed on the command line.
-#   %(diffargs)		The diff options from `diff-options` or `TIG_DIFF_OPTS`
-#   %(prompt)		Prompt for the argument value.
-#   %(repo:head)	The name of the checked out branch.
-#   %(repo:remote)	The remote name associated with the checked out branch.
-#   %(repo:upstream)	The upstream branch associated with the checked out branch.
+#   %(head)		当前引用 ID, 默认为 HEAD
+#   %(commit)		当前提交 ID
+#   %(blob)		当前 blob ID
+#   %(branch)		当前分支名
+#   %(remote)		当前远程名
+#   %(tag)		当前标签名
+#   %(stash)		当前贮藏名
+#   %(directory)	目录树视图中的当前目录路径;
+#			根目录时为空
+#   %(file)		当前选中的文件
+#   %(ref)		blame 给定的引用, 未定义时为 HEAD
+#   %(revargs)		命令行传入的版本参数
+#   %(fileargs)		命令行传入的文件参数
+#   %(cmdlineargs)	命令行传入的其他选项
+#   %(diffargs)		`diff-options` 或 `TIG_DIFF_OPTS` 中的差异选项
+#   %(prompt)		提示输入参数值
+#   %(repo:head)	已检出的分支名
+#   %(repo:remote)	已检出分支关联的远程名
+#   %(repo:upstream)	已检出分支关联的上游分支
 
 bind main	C	?git cherry-pick %(commit)
 bind status	C	!git commit
@@ -203,10 +201,10 @@ bind refs	!	?git branch -D %(branch)
 bind reflog	C	?git checkout %(branch)
 bind reflog	!	?git reset --hard %(commit)
 
-# Normal commands
+# 常规命令
 # ---------------
 
-# View switching
+# 视图切换
 bind generic	m	view-main
 bind generic	d	view-diff
 bind generic	l	view-log
@@ -218,52 +216,52 @@ bind generic	r	view-refs
 bind generic	p	view-pager
 bind generic	h	view-help
 bind generic	s	view-status
-bind generic	S	view-status		# Compat binding to avoid going crazy!
+bind generic	S	view-status		# 兼容绑定, 避免抓狂!
 bind generic	c	view-stage
 bind generic	y	view-stash
 bind generic	g	view-grep
 
-# View manipulation
-bind generic	<Enter>	enter			# Enter and open selected entry
-bind generic	<Lt>	back			# Go back to the previous view state
-bind generic	<Down>	next			# Move to next
+# 视图操作
+bind generic	<Enter>	enter			# 进入并打开选中项
+bind generic	<Lt>	back			# 返回上一个视图状态
+bind generic	<Down>	next			# 移至下一项
 bind generic	<C-N>	next
 bind generic	J	next
-bind generic	<Up>	previous		# Move to previous
+bind generic	<Up>	previous		# 移至上一项
 bind generic	<C-P>	previous
 bind generic	K	previous
-bind generic	,	parent			# Move to parent
-bind generic	<Tab>	view-next		# Move focus to the next view
-bind generic	R	refresh			# Reload and refresh view
+bind generic	,	parent			# 移至父级
+bind generic	<Tab>	view-next		# 切换焦点到下一个视图
+bind generic	R	refresh			# 重新加载并刷新视图
 bind generic	<F5>	refresh
-bind generic	O	maximize		# Maximize the current view
-bind generic	q	view-close		# Close the current view
-bind generic	Q	quit			# Close all views and quit
-bind generic	<C-C>	quit			# Close all views and quit
+bind generic	O	maximize		# 最大化当前视图
+bind generic	q	view-close		# 关闭当前视图
+bind generic	Q	quit			# 关闭所有视图并退出
+bind generic	<C-C>	quit			# 关闭所有视图并退出
 
-# View specific
-bind status	u	status-update		# Stage/unstage changes in file
-bind status	!	status-revert		# Revert changes in file
-bind status	M	status-merge		# Open git-mergetool(1)
-# bind status	???	:toggle status		# Show short or long status labels
-bind stage	u	status-update		# Stage/unstage current diff (c)hunk
-bind stage	1	stage-update-line	# Stage/unstage current line
-bind stage	2	stage-update-part	# Stage/unstage part of chunk
-bind stage	!	status-revert		# Revert current diff (c)hunk
-bind stage	\	stage-split-chunk	# Split current diff (c)hunk
-bind stage	@	:/^@@			# Jump to next (c)hunk
-bind stage	[	:toggle diff-context -1	# Decrease the diff context
-bind stage	]	:toggle diff-context +1	# Increase the diff context
-bind diff	@	:/^@@			# Jump to next (c)hunk
-bind diff	[	:toggle diff-context -1	# Decrease the diff context
-bind diff	]	:toggle diff-context +1	# Increase the diff context
-bind pager	@	:/^@@			# Jump to next (c)hunk
-bind main	H	:goto HEAD		# Jump to HEAD commit
-bind main	G	:toggle commit-title-graph # Toggle revision graph visualization
-bind main	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
-bind reflog	F	:toggle commit-title-refs  # Toggle reference display (tags/branches)
+# 视图专属
+bind status	u	status-update		# 暂存/取消暂存文件变更
+bind status	!	status-revert		# 还原文件变更
+bind status	M	status-merge		# 打开 git-mergetool(1)
+# bind status	???	:toggle status		# 显示短或长状态标签
+bind stage	u	status-update		# 暂存/取消暂存当前 diff 块
+bind stage	1	stage-update-line	# 暂存/取消暂存当前行
+bind stage	2	stage-update-part	# 暂存/取消暂存块的部分
+bind stage	!	status-revert		# 还原当前 diff 块
+bind stage	\	stage-split-chunk	# 拆分当前 diff 块
+bind stage	@	:/^@@			# 跳到下一个块
+bind stage	[	:toggle diff-context -1	# 减少差异上下文
+bind stage	]	:toggle diff-context +1	# 增加差异上下文
+bind diff	@	:/^@@			# 跳到下一个块
+bind diff	[	:toggle diff-context -1	# 减少差异上下文
+bind diff	]	:toggle diff-context +1	# 增加差异上下文
+bind pager	@	:/^@@			# 跳到下一个块
+bind main	H	:goto HEAD		# 跳到 HEAD 提交
+bind main	G	:toggle commit-title-graph # 切换版本图可视化
+bind main	F	:toggle commit-title-refs  # 切换引用显示 (标签/分支)
+bind reflog	F	:toggle commit-title-refs  # 切换引用显示 (标签/分支)
 
-# Cursor navigation
+# 光标导航
 bind generic	j	move-down
 bind generic	k	move-up
 bind generic	<C-D>	move-half-page-down
@@ -275,7 +273,7 @@ bind generic	-	move-page-up
 bind generic	<Home>	move-first-line
 bind generic	<End>	move-last-line
 
-# Scrolling
+# 滚动
 bind generic	|	scroll-first-col
 bind generic	<Left>	scroll-left
 bind generic	<Right>	scroll-right
@@ -288,12 +286,12 @@ bind generic	<SFwd>	scroll-page-down
 # bind generic	???	scroll-half-page-up
 # bind generic	???	scroll-half-page-down
 
-# Searching
+# 搜索
 bind generic	/	search
 bind generic	?	search-back
 bind generic	n	find-next
 bind generic	N	find-prev
-# Navigation keys used while searching
+# 搜索时使用的导航键
 bind search	<Down>	find-next
 bind search	<C-N>	find-next
 bind search	<C-J>	find-next
@@ -302,61 +300,60 @@ bind search	<C-P>	find-prev
 bind search	<C-K>	find-prev
 bind search	<C-C>	view-close
 
-# Option manipulation
+# 选项操作
 bind generic	o	options			# Open the options menu
-# Bindings for toggling settings
-bind generic	I	:toggle sort-order	# Toggle ascending/descending sort order
-bind generic	i	:toggle sort-field	# Toggle field to sort by
-bind generic	<Hash>	:toggle line-number	# Toggle line numbers
-bind generic	D	:toggle date		# Toggle date display
-bind generic	A	:toggle author		# Toggle author display
-bind generic	T	:toggle committer	# Toggle committer display
+# 切换设置的绑定
+bind generic	I	:toggle sort-order	# 切换升序/降序排序
+bind generic	i	:toggle sort-field	# 切换排序字段
+bind generic	<Hash>	:toggle line-number	# 切换行号显示
+bind generic	D	:toggle date		# 切换日期显示
+bind generic	A	:toggle author		# 切换作者显示
+bind generic	T	:toggle committer	# 切换提交者显示
 # bind generic	???	:toggle commit-title-display
-						# Toggle commit title display
-bind generic	~	:toggle line-graphics	# Toggle (line) graphics mode
-bind generic	F	:toggle file-name	# Toggle file name display
-# bind generic	???	:toggle show-changes	# Toggle local changes display in the main view
-bind generic	W	:toggle ignore-space	# Toggle ignoring whitespace in diffs
-# bind generic	???	:toggle ignore-case	# Toggle ignoring case when searching
-# bind generic	???	:toggle commit-order	# Toggle commit ordering
-bind generic	X	:toggle id		# Toggle commit ID display
+						# 切换提交标题显示
+bind generic	~	:toggle line-graphics	# 切换 (线条) 图形模式
+bind generic	F	:toggle file-name	# 切换文件名显示
+# bind generic	???	:toggle show-changes	# 切换主视图中的本地变更显示
+bind generic	W	:toggle ignore-space	# 切换差异中忽略空白
+# bind generic	???	:toggle ignore-case	# 切换搜索时忽略大小写
+# bind generic	???	:toggle commit-order	# 切换提交排序
+bind generic	X	:toggle id		# 切换提交 ID 显示
 bind generic	$	:toggle commit-title-overflow
-						# Toggle highlighting of commit title overflow
-# bind generic	???	:toggle file-size	# Toggle file size format
-# bind generic	???	:toggle status		# Toggle status display
+						# 切换提交标题溢出高亮
+# bind generic	???	:toggle file-size	# 切换文件大小格式
+# bind generic	???	:toggle status		# 切换状态显示
 # bind generic	???	:toggle status-show-untracked-dirs
-						# Toggle display of file in untracked directories
-# bind generic	???	:toggle vertical-split	# Toggle vertical split
-# bind generic	???	:toggle word-diff	# Toggle word diff
-# bind generic	???	:toggle diff-indicator	# Toggle display of diff +/- signs
-bind generic	%	:toggle file-filter	# Toggle filtering by pathspecs in file-args
-bind generic	^	:toggle rev-filter	# Toggle filtering by revisions in rev-args
+						# 切换未跟踪目录中文件的显示
+# bind generic	???	:toggle vertical-split	# 切换垂直分割
+# bind generic	???	:toggle word-diff	# 切换逐词差异
+# bind generic	???	:toggle diff-indicator	# 切换 diff +/- 符号显示
+bind generic	%	:toggle file-filter	# 切换按路径规范过滤文件参数
+bind generic	^	:toggle rev-filter	# 切换按版本过滤版本参数
 
-# Misc
-bind generic	e	edit			# Open in editor
-bind generic	:	prompt			# Open the prompt
-bind generic	<C-L>	screen-redraw		# Redraw the screen
-bind generic	z	stop-loading		# Stop all loading views
-bind generic	v	show-version		# Show Tig version
+# 杂项
+bind generic	e	edit			# 在编辑器中打开
+bind generic	:	prompt			# 打开命令提示符
+bind generic	<C-L>	screen-redraw		# 重绘屏幕
+bind generic	z	stop-loading		# 停止所有加载中的视图
+bind generic	v	show-version		# 显示 Tig 版本
 
-# Colors
+# 颜色
 # ------
 
-# The colors in the UI can be customized. In addition to the colors used
-# for the UI you can also define new colors to use in the pager, blob,
-# diff, and stage views by placing the text to match for in quotes.
+# UI 中的颜色可以自定义. 除了 UI 使用的颜色外,
+# 还可以通过在引号中放置匹配文本来定义 pager, blob, diff 和 stage 视图的新颜色
 #
-# Prefix the name of a view to set a color only for that view, e.g.
+# 加视图名前缀可仅为该视图设置颜色, 例如
 #
 #	color grep.file			blue	default
 #
-# As an example, this setting will to color Signed-off-by lines with a
-# yellow foreground color and use the default background color.
+# 例如, 此设置会将 Signed-off-by 行着色为
+# 黄色前景色并使用默认背景色
 #
 #	color "    Signed-off-by"	yellow	default
 #
-# Note the four leading spaces in the string to match. This is because
-# Git automatically indents commit messages by four spaces.
+# 注意匹配字符串中的四个前导空格. 这是因为
+# Git 会自动将提交消息缩进四个空格
 
 color "---"			blue	default
 color "diff --"			yellow	default
@@ -472,8 +469,8 @@ color palette-13		red	default	bold
 color graph-commit		blue	default
 color search-result		black	yellow
 
-# Mappings for colors read from git configuration.
-# Set to "no" to disable.
+# 从 git 配置读取的颜色映射
+# 设置为 "no" 可禁用
 set git-colors = \
 	branch.current=main-head \
 	branch.local=main-ref \

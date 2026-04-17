@@ -65,24 +65,24 @@
  */
 
 #define TOGGLE_MENU_INFO(_) \
-	_('.', "line numbers",			"line-number"), \
-	_('D', "dates",				"date"), \
-	_('A', "author",			"author"), \
-	_('T', "committer",			"committer"), \
-	_('~', "graphics",			"line-graphics"), \
-	_('g', "revision graph",		"commit-title-graph"), \
-	_('#', "file names",			"file-name"), \
-	_('*', "file sizes",			"file-size"), \
-	_('W', "space changes",			"ignore-space"), \
-	_('l', "commit order",			"commit-order"), \
-	_('F', "reference display",		"commit-title-refs"), \
-	_('C', "local change display",		"show-changes"), \
-	_('X', "commit ID display",		"id"), \
-	_('%', "file filtering",		"file-filter"), \
-	_('^', "revision filtering",		"rev-filter"), \
-	_('$', "commit title overflow display",	"commit-title-overflow"), \
-	_('d', "untracked directory info",	"status-show-untracked-dirs"), \
-	_('|', "view split",			"vertical-split"), \
+	_('.', "行号",				"line-number"), \
+	_('D', "日期",				"date"), \
+	_('A', "作者",				"author"), \
+	_('T', "提交者",			"committer"), \
+	_('~', "图形模式",			"line-graphics"), \
+	_('g', "版本图",			"commit-title-graph"), \
+	_('#', "文件名",			"file-name"), \
+	_('*', "文件大小",			"file-size"), \
+	_('W', "空格变更",			"ignore-space"), \
+	_('l', "提交排序",			"commit-order"), \
+	_('F', "引用显示",			"commit-title-refs"), \
+	_('C', "本地变更显示",			"show-changes"), \
+	_('X', "提交 ID 显示",			"id"), \
+	_('%', "文件过滤",			"file-filter"), \
+	_('^', "版本过滤",			"rev-filter"), \
+	_('$', "提交标题溢出显示",		"commit-title-overflow"), \
+	_('d', "未跟踪目录信息",			"status-show-untracked-dirs"), \
+	_('|', "视图分割",			"vertical-split"), \
 
 
 const struct menu_item toggle_menu_items[] = {
@@ -97,7 +97,7 @@ toggle_option(struct view *view)
 	const char *toggle_argv[] = { "toggle", NULL, NULL };
 	int i = 0;
 
-	if (!prompt_menu("Toggle option", toggle_menu_items, &i))
+	if (!prompt_menu("切换选项", toggle_menu_items, &i))
 		return;
 
 	toggle_argv[1] = toggle_menu_items[i].data;

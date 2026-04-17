@@ -20,70 +20,71 @@
  * User requests
  */
 
-#define VIEW_REQ(id, name) REQ_(VIEW_##id, "Show " #name " view")
+/* 视图名称中文映射 */
+#define VIEW_REQ(id, name) REQ_(VIEW_##id, "显示" #name "视图")
 
 #define REQ_INFO \
-	REQ_GROUP("View switching") \
+	REQ_GROUP("视图切换") \
 	VIEW_INFO(VIEW_REQ), \
 	\
-	REQ_GROUP("View manipulation") \
-	REQ_(ENTER,		"Enter and open selected line"), \
-	REQ_(BACK,		"Go back to the previous view state"), \
-	REQ_(NEXT,		"Move to next"), \
-	REQ_(PREVIOUS,		"Move to previous"), \
-	REQ_(PARENT,		"Move to parent"), \
-	REQ_(VIEW_NEXT,		"Move focus to the next view"), \
-	REQ_(REFRESH,		"Reload and refresh view"), \
-	REQ_(MAXIMIZE,		"Maximize the current view"), \
-	REQ_(VIEW_CLOSE,	"Close the current view"), \
-	REQ_(VIEW_CLOSE_NO_QUIT,	"Close the current view without quitting"), \
-	REQ_(QUIT,		"Close all views and quit"), \
+	REQ_GROUP("视图操作") \
+	REQ_(ENTER,		"进入并打开选中行"), \
+	REQ_(BACK,		"返回上一个视图状态"), \
+	REQ_(NEXT,		"移至下一项"), \
+	REQ_(PREVIOUS,		"移至上一项"), \
+	REQ_(PARENT,		"移至父级"), \
+	REQ_(VIEW_NEXT,		"切换焦点到下一个视图"), \
+	REQ_(REFRESH,		"重新加载并刷新视图"), \
+	REQ_(MAXIMIZE,		"最大化当前视图"), \
+	REQ_(VIEW_CLOSE,	"关闭当前视图"), \
+	REQ_(VIEW_CLOSE_NO_QUIT,	"关闭当前视图但不退出"), \
+	REQ_(QUIT,		"关闭所有视图并退出"), \
 	\
-	REQ_GROUP("View-specific actions") \
-	REQ_(STATUS_UPDATE,	"Stage/unstage chunk or file changes"), \
-	REQ_(STATUS_REVERT,	"Revert chunk or file changes"), \
-	REQ_(STATUS_MERGE,	"Merge file using external tool"), \
-	REQ_(STAGE_UPDATE_LINE,	"Stage/unstage single line"), \
-	REQ_(STAGE_UPDATE_PART, "Stage/unstage part of a chunk"), \
-	REQ_(STAGE_SPLIT_CHUNK,	"Split current diff chunk"), \
+	REQ_GROUP("视图专属操作") \
+	REQ_(STATUS_UPDATE,	"暂存/取消暂存代码块或文件变更"), \
+	REQ_(STATUS_REVERT,	"还原代码块或文件变更"), \
+	REQ_(STATUS_MERGE,	"使用外部工具合并文件"), \
+	REQ_(STAGE_UPDATE_LINE,	"暂存/取消暂存单行"), \
+	REQ_(STAGE_UPDATE_PART, "暂存/取消暂存代码块部分"), \
+	REQ_(STAGE_SPLIT_CHUNK,	"拆分当前diff代码块"), \
 	\
-	REQ_GROUP("Cursor navigation") \
-	REQ_(MOVE_UP,		"Move cursor one line up"), \
-	REQ_(MOVE_DOWN,		"Move cursor one line down"), \
-	REQ_(MOVE_PAGE_UP,	"Move cursor one page up"), \
-	REQ_(MOVE_PAGE_DOWN,	"Move cursor one page down"), \
-	REQ_(MOVE_HALF_PAGE_UP,	"Move cursor half a page up"), \
-	REQ_(MOVE_HALF_PAGE_DOWN,	"Move cursor half a page down"), \
-	REQ_(MOVE_FIRST_LINE,	"Move cursor to first line"), \
-	REQ_(MOVE_LAST_LINE,	"Move cursor to last line"), \
-	REQ_(MOVE_NEXT_MERGE,	"Move cursor to next merge commit"), \
-	REQ_(MOVE_PREV_MERGE,	"Move cursor to previous merge commit"), \
+	REQ_GROUP("光标导航") \
+	REQ_(MOVE_UP,		"光标上移一行"), \
+	REQ_(MOVE_DOWN,		"光标下移一行"), \
+	REQ_(MOVE_PAGE_UP,	"光标上移一页"), \
+	REQ_(MOVE_PAGE_DOWN,	"光标下移一页"), \
+	REQ_(MOVE_HALF_PAGE_UP,	"光标上移半页"), \
+	REQ_(MOVE_HALF_PAGE_DOWN,	"光标下移半页"), \
+	REQ_(MOVE_FIRST_LINE,	"光标移至首行"), \
+	REQ_(MOVE_LAST_LINE,	"光标移至末行"), \
+	REQ_(MOVE_NEXT_MERGE,	"光标移至下一个合并提交"), \
+	REQ_(MOVE_PREV_MERGE,	"光标移至上一个合并提交"), \
 	\
-	REQ_GROUP("Scrolling") \
-	REQ_(SCROLL_LINE_UP,	"Scroll one line up"), \
-	REQ_(SCROLL_LINE_DOWN,	"Scroll one line down"), \
-	REQ_(SCROLL_PAGE_UP,	"Scroll one page up"), \
-	REQ_(SCROLL_PAGE_DOWN,	"Scroll one page down"), \
-	REQ_(SCROLL_HALF_PAGE_UP,	"Scroll half a page up"), \
-	REQ_(SCROLL_HALF_PAGE_DOWN,	"Scroll half a page down"), \
-	REQ_(SCROLL_FIRST_COL,	"Scroll to the first line columns"), \
-	REQ_(SCROLL_LEFT,	"Scroll two columns left"), \
-	REQ_(SCROLL_RIGHT,	"Scroll two columns right"), \
+	REQ_GROUP("滚动") \
+	REQ_(SCROLL_LINE_UP,	"向上滚动一行"), \
+	REQ_(SCROLL_LINE_DOWN,	"向下滚动一行"), \
+	REQ_(SCROLL_PAGE_UP,	"向上滚动一页"), \
+	REQ_(SCROLL_PAGE_DOWN,	"向下滚动一页"), \
+	REQ_(SCROLL_HALF_PAGE_UP,	"向上滚动半页"), \
+	REQ_(SCROLL_HALF_PAGE_DOWN,	"向下滚动半页"), \
+	REQ_(SCROLL_FIRST_COL,	"滚动到首列"), \
+	REQ_(SCROLL_LEFT,	"向左滚动两列"), \
+	REQ_(SCROLL_RIGHT,	"向右滚动两列"), \
 	\
-	REQ_GROUP("Searching") \
-	REQ_(SEARCH,		"Search the view"), \
-	REQ_(SEARCH_BACK,	"Search backwards in the view"), \
-	REQ_(FIND_NEXT,		"Find next search match"), \
-	REQ_(FIND_PREV,		"Find previous search match"), \
+	REQ_GROUP("搜索") \
+	REQ_(SEARCH,		"搜索当前视图"), \
+	REQ_(SEARCH_BACK,	"反向搜索当前视图"), \
+	REQ_(FIND_NEXT,		"查找下一个匹配"), \
+	REQ_(FIND_PREV,		"查找上一个匹配"), \
 	\
-	REQ_GROUP("Misc") \
-	REQ_(EDIT,		"Open in editor"), \
-	REQ_(PROMPT,		"Open the prompt"), \
-	REQ_(OPTIONS,		"Open the options menu"), \
-	REQ_(SCREEN_REDRAW,	"Redraw the screen"), \
-	REQ_(STOP_LOADING,	"Stop all loading views"), \
-	REQ_(SHOW_VERSION,	"Show version information"), \
-	REQ_(NONE,		"Do nothing")
+	REQ_GROUP("其他") \
+	REQ_(EDIT,		"在编辑器中打开"), \
+	REQ_(PROMPT,		"打开命令提示符"), \
+	REQ_(OPTIONS,		"打开选项菜单"), \
+	REQ_(SCREEN_REDRAW,	"重绘屏幕"), \
+	REQ_(STOP_LOADING,	"停止所有加载中的视图"), \
+	REQ_(SHOW_VERSION,	"显示版本信息"), \
+	REQ_(NONE,		"无操作")
 
 
 /* User action requests. */
